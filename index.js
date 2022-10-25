@@ -26,7 +26,7 @@ app.post('/api/v1/user', async (req, res)=>{
     users.push({...newUser, id: users[users.length -1].id +1});
     await fs.writeFile(jsonPath, JSON.stringify(users));
     res.sendStatus(201);
-});
+})
 
 app.put('/api/v1/user/:id', async (req, res)=>{
     const users = JSON.parse(await fs.readFile(jsonPath, 'utf8'));
