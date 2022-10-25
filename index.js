@@ -11,7 +11,13 @@ app.listen(8001)
 const jsonPath = path.resolve('data.json');
 
 app.get('/api/v1/user', async (req, res) =>{
-    res.status(200).send(await fs.readFile(jsonPath, 'utf8'));
+    const users = JSON.parse(await fs.readFile(jsonPath, 'utf8'));
+    res.status(200).send(users.map(user => {
+        return  {
+                    user: user.name, 
+                    email: user.email
+                }
+    }));
 });
 
 app.post('/api/v1/user', async (req, res)=>{
