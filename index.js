@@ -14,6 +14,7 @@ app.get('/api/v1/user', async (req, res) =>{
     const users = JSON.parse(await fs.readFile(jsonPath, 'utf8'));
     res.status(200).send(users.map(user => {
         return  {
+                    id: user.id,
                     user: user.name, 
                     email: user.email
                 }
